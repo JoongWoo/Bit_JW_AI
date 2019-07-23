@@ -1,0 +1,61 @@
+RMSE모델링 성공
+(1)
+model.add(Dense(10, input_shape = (1, ), activation = 'relu')) # (1, ) => 몰라행 1열(행이 무시가 되고 열로만 판단)
+model.add(Dense(20))
+model.add(Dense(20))
+model.add(Dense(20))
+model.add(Dense(15))
+model.add(Dense(1)) # 출력을 하나로 만듦 # output 레이어
+
+model.summary() # param #에 나오는 값 = (입력값 * 그 전 레이어의 값) + 바이어스(입력값과 동일)
+# param(line)의 개수로 생각해서 그림 그려서 그림개수를 따져본다. [line수 + 바이어스]
+# y = wx+b => wx = line / b = 바이어스 / y = param(파라메터값)
+
+#3. 훈련
+model.compile(loss = 'mse', optimizer = 'adam', metrics = ['accuracy'])
+model.fit(x_train, y_train, epochs = 500, batch_size = 2)
+# model.fit(x_train, y_train, epochs = 500)
+
+RMSE : 0.0004902089148144589
+
+(2)
+# model.add(Dense(10, input_dim = 1, activation = 'relu'))
+model.add(Dense(10, input_shape = (1, ), activation = 'relu')) # (1, ) => 몰라행 1열(행이 무시가 되고 열로만 판단)
+model.add(Dense(20))
+model.add(Dense(10))
+model.add(Dense(10))
+model.add(Dense(15))
+model.add(Dense(1)) # 출력을 하나로 만듦 # output 레이어
+
+model.summary() # param #에 나오는 값 = (입력값 * 그 전 레이어의 값) + 바이어스(입력값과 동일)
+# param(line)의 개수로 생각해서 그림 그려서 그림개수를 따져본다. [line수 + 바이어스]
+# y = wx+b => wx = line / b = 바이어스 / y = param(파라메터값)
+
+#3. 훈련
+model.compile(loss = 'mse', optimizer = 'adam', metrics = ['accuracy'])
+model.fit(x_train, y_train, epochs = 500, batch_size = 2)
+# model.fit(x_train, y_train, epochs = 500)
+
+RMSE : 1.6518123698891422e-06
+
+(3)
+# model.add(Dense(10, input_dim = 1, activation = 'relu'))
+model.add(Dense(10, input_shape = (1, ), activation = 'relu')) # (1, ) => 몰라행 1열(행이 무시가 되고 열로만 판단)
+model.add(Dense(20))
+model.add(Dense(10))
+model.add(Dense(10))
+model.add(Dense(10))
+model.add(Dense(1)) # 출력을 하나로 만듦 # output 레이어
+
+model.summary() # param #에 나오는 값 = (입력값 * 그 전 레이어의 값) + 바이어스(입력값과 동일)
+# param(line)의 개수로 생각해서 그림 그려서 그림개수를 따져본다. [line수 + 바이어스]
+# y = wx+b => wx = line / b = 바이어스 / y = param(파라메터값)
+
+#3. 훈련
+model.compile(loss = 'mse', optimizer = 'adam', metrics = ['accuracy'])
+model.fit(x_train, y_train, epochs = 500, batch_size = 2)
+# model.fit(x_train, y_train, epochs = 500)
+
+RMSE : 1.0446978712180444e-06
+
+(4)

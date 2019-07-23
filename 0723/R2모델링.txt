@@ -1,0 +1,121 @@
+R2
+좋은거
+model.add(Dense(10, input_shape = (1, ), activation = 'relu')) # (1, ) => 몰라행 1열(행이 무시가 되고 열로만 판단)
+model.add(Dense(20))
+model.add(Dense(10))
+model.add(Dense(10))
+model.add(Dense(10))
+model.add(Dense(1)) # 출력을 하나로 만듦 # output 레이어
+
+model.summary()
+
+#3. 훈련
+model.compile(loss = 'mse', optimizer = 'adam', metrics = ['accuracy'])
+model.fit(x_train, y_train, epochs = 500, batch_size = 2)
+
+acc :  1.0
+[[11.      ]
+ [12.      ]
+ [13.      ]
+ [14.000001]
+ [14.999999]
+ [16.      ]
+ [16.999994]
+ [17.999996]
+ [18.999996]
+ [20.      ]]
+RMSE : 2.5231850729604633e-06
+R2 : 0.9999999999992283
+-------------------------------------------------------------
+에포 - 100이상
+배치사이즈 - 1
+노드5이상
+레이어의 깊이 히든 3개이상
+로만 해서 안좋게
+
+# model.add(Dense(10, input_dim = 1, activation = 'relu'))
+model.add(Dense(120, input_shape = (1, ), activation = 'relu')) # (1, ) => 몰라행 1열(행이 무시가 되고 열로만 판단)
+model.add(Dense(100))
+model.add(Dense(120))
+model.add(Dense(140))
+model.add(Dense(160))
+model.add(Dense(180))
+model.add(Dense(200))
+model.add(Dense(220))
+model.add(Dense(240))
+model.add(Dense(260))
+model.add(Dense(280))
+model.add(Dense(300))
+model.add(Dense(360))
+model.add(Dense(360))
+model.add(Dense(300))
+model.add(Dense(280))
+model.add(Dense(260))
+model.add(Dense(240))
+model.add(Dense(220))
+model.add(Dense(170))
+model.add(Dense(1)) # 출력을 하나로 만듦 # output 레이어
+
+model.summary()
+
+#3. 훈련
+model.compile(loss = 'mse', optimizer = 'adam', metrics = ['accuracy'])
+model.fit(x_train, y_train, epochs = 100, batch_size = 1)
+
+acc :  0.0
+[[ 9.659388]
+ [10.514906]
+ [11.370423]
+ [12.22594 ]
+ [13.081458]
+ [13.936979]
+ [14.7925  ]
+ [15.648017]
+ [16.50354 ]
+ [17.359056]]
+RMSE : 2.0335729921211034
+R2 : 0.4987370770564391
+
+(2)
+model.add(Dense(120, input_shape = (1, ), activation = 'relu')) # (1, ) => 몰라행 1열(행이 무시가 되고 열로만 판단)
+model.add(Dense(100))
+model.add(Dense(120))
+model.add(Dense(140))
+model.add(Dense(160))
+model.add(Dense(180))
+model.add(Dense(200))
+model.add(Dense(220))
+model.add(Dense(240))
+model.add(Dense(260))
+model.add(Dense(280))
+model.add(Dense(300))
+model.add(Dense(360))
+model.add(Dense(360))
+model.add(Dense(300))
+model.add(Dense(280))
+model.add(Dense(260))
+model.add(Dense(240))
+model.add(Dense(220))
+model.add(Dense(168))
+model.add(Dense(1)) # 출력을 하나로 만듦 # output 레이어
+
+model.summary()
+
+#3. 훈련
+model.compile(loss = 'mse', optimizer = 'adam', metrics = ['accuracy'])
+# model.compile(loss = 'mse', optimizer = 'adam', metrics = ['mse'])
+model.fit(x_train, y_train, epochs = 100, batch_size = 1)
+
+acc :  0.0
+[[ 9.644815]
+ [10.503004]
+ [11.361193]
+ [12.219573]
+ [13.077955]
+ [13.936336]
+ [14.794716]
+ [15.653095]
+ [16.511475]
+ [17.369858]]
+RMSE : 2.03390622085698
+R2 : 0.49857278603142763
