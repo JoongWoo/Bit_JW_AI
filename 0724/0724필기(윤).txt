@@ -1,0 +1,139 @@
+윤영선선생님 0724필기
+-------------------------------------------------------------------------------
+R2 -> 0이상 0.5이하
+노드 각 노드 10개 이상
+레이어 총 5개이상(히든3개이상)
+에포 100개이상
+배치사이즈 1
+model.add(Dense(100, input_shape = (3, ), activation = 'relu')) # (1, ) => 몰라행 1열(행이 무시가 되고 열로만 판단)
+model.add(Dense(100))
+model.add(Dense(100))
+model.add(Dense(100))
+model.add(Dense(100))
+model.add(Dense(200))
+model.add(Dense(200))
+model.add(Dense(200))
+model.add(Dense(200))
+model.add(Dense(200))
+model.add(Dense(200))
+model.add(Dense(200))
+model.add(Dense(200))
+model.add(Dense(200))
+model.add(Dense(200))
+model.add(Dense(250))
+model.add(Dense(300))
+model.add(Dense(300))
+model.add(Dense(300))
+model.add(Dense(1)) # y의 컬럼이 1이므로 출력아웃풋은 1
+
+model.summary()
+
+#3. 훈련
+# model.compile(loss = 'mse', optimizer = 'adam', metrics = ['accuracy'])
+model.compile(loss = 'mse', optimizer = 'adam', metrics = ['mse'])
+# model.fit(x_train, y_train, epochs = 100)
+# model.fit(x_train, y_train, epochs = 100, batch_size = 1)
+model.fit(x_train, y_train, epochs = 100, batch_size = 1, validation_data=(x_val, y_val))
+
+acc :  228.18590432796628
+[[528.3318 ]
+ [625.05316]
+ [540.3713 ]
+ [528.79584]
+ [575.45917]
+ [602.04626]
+ [527.86914]
+ [535.89264]
+ [532.31165]
+ [544.8489 ]
+ [577.6518 ]
+ [592.99097]
+ [620.4514 ]
+ [532.6361 ]
+ [604.34686]
+ [529.49097]
+ [551.1209 ]
+ [533.93536]
+ [550.22473]]
+RMSE : 15.105626341756302
+R2 : 0.7540866245350197
+-------------------------------------------------------------------------------
+저녁에 깔아보던가ㅏ
+pip install Autokeras
+Auto ML
+
+****DNN****
+1 : 1
+1 : 다
+다 : 1
+다 : 다
+
+앙상블
+모델은 시퀀셜(원래 하던방식)
+함수형모델(하나가 뒤에 변수로 이어서간다)
+
+****RNN****
+Recurrent Neural Network(순환 뉴럴 네트워크)
+시 계열(time distributed) => 시간과 같이 연속적인 데이터에 잘어울림
+
+1차는 DNN 으로 모두 해결가능하다
+그렇다면 2차함수( y = ax²+bx+c )는?
+미분후 ( y′ = 2ax+b )
+3차함수 ( y = ax³+bx²+cx+d )는?
+미분한번( y′ = 3ax²+2bx+c )
+미분두번( y′′ = 6ax+2b )
+
+LSTM은 RNN에 포함된 것
+LSTM => 그냥 RNN으로 생각
+
+*****LSTM에서 param계산값구하기*****
+참고사이트1(공식1출처)
+https://stackoverflow.com/questions/38080035/how-to-calculate-the-number-of-parameters-of-an-lstm-network
+
+참고사이트2(공식2출처)
+https://datascience.stackexchange.com/questions/10615/number-of-parameters-in-an-lstm-model
+
+(3+1) * ? * 10
+= 40 * ?
+? = 12
+2*8 + 64 = 16+64 = 80
+공식1 => params = 4 * ((size_of_input + 1) * size_of_output
+				+ size_of_output^2)
+size_of_input => 1(자르는값)
+size_of_output => 8
+
+공식 1이 유력
+공식2 => 4(nm+n²)
+
+
+model.add(LSTM(8, activation = 'relu', input_shape = (3, 1)))
+=> 실제 param# = 320
+=> 공식 1사용시 맞음
+
+model.add(LSTM(256, input_dim=4096, input_length=16))
+=> 4((4096*16)+(4096*4096))
+=> 4(4097*256+256²)
+
+***문제!!과제? 문제!!***
+
+컬럼, 자르는개수 집어넣어
+몇개씩 작업을 할것인가
+
+1,2,3 	=> 4
+2,3,4 	=> 5
+3,4,5	=> 6
+4,5,6	=> 7
+5,6,7	=> 8
+6,7,8	=> 9
+7,8,9 	=> 10
+8,9,10 	=> 11
+9,10,11 	=> 12
+10,11,12 	=> 13
+11,12,13 	=> ?
+(14입니닭)
+
+****과제****
+어제 했던 타이타닉을
+수정을 하던 뭘 하던해서 어제의 점수보다 높게 잡아라.
+소수 1자리라도 올려도되니까 지금 현재의 데이터보다 좋아져서 제출
+제출하려했는데 팀제출제한걸린ㅜ
