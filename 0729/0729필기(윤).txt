@@ -1,0 +1,87 @@
+0729 (월)
+
+verbose = 기본값 1, 지정안하고 써놓으면 기본값 실행
+normalization =>  minmax #정규화
+  X - min
+ㅡㅡㅡㅡㅡㅡ
+ max - min
+
+standardization => standard scaler
+  X - 평균
+ㅡㅡㅡㅡㅡㅡ
+    표편
+
+regularization => L1 - 라쏘, L2 - 릿지 #정칙화, 일반화
+층, Layer
+
+LSTM #RNN에 속함(통상적으로 제일 잘나감)
+
+***CNN***
+kernel_size => 이 이미지를 몇개씩잘라서 작업을 할 것인가?
+param => (2x2)+1 [+1은 바이어스] = 5*7장 => 35
+model.add(Conv2D(7, (2, 2), input_shape = (5, 5, 1)))
+7은 7장을 만든다 (2, 2)로 나눠서 만든다.
+Output Shape => (None, 4, 4, 7) => 5,5,1을 2,2로 나눠서 4,4됨
+자르고 또 잘라서 특성을 학습시킴
+
+원래 shape에서 자르는 값을 빼고 1을 더하면 output쪽이 나옴
+(input_shape) - (kernel_size) + 1 => output()
+
+keras.io에서 인자나 비슷한거 검색(영어지만 인자같은거 나옴)
+# padding => 채울 테두리의 크기를 지정하는 것,
+	      옆에 잘리는 것이 없어짐
+padding의 dafault값 => valid
+valid로 했을때 => 기존 4,4,7일때랑 같은 결과 나옴
+same으로 했을때 => 4,4,7일 것이 5,5,7로 나옴(shape가 똑같이나옴)
+
+dropout을 통해 오버핏이 되는 경우를 대부분 막을 수 있음
+model.dropout(0.25) => 쓸모없는(0인) 데이터의 25%를 제거
+제거를 통해 오버핏을 막음과 동시에 정확도를 올릴 수 있음
+
+model.add(Maxpooling()) => 그 레이어에서 큰것들을 뽑아 모으기?
+model.add(MaxPooling2D(2, 2))
+
+2D를 1D로 펴주는 것!
+model.add(Dropout(0.2)) => 넣고픈데 넣으면되고~
+model.add(Flatten())
+model.add(Dense(~~~))
+
+DNN과 CNN의 속도차이의 원인 => 파라메터 개수의 차이
+(summary를 통해서 파라메터 개수차이 확인)
+DNN -> 총 파라메터 개수 = 407,050
+CNN -> 총 파라메터 개수 = 1,199,882
+
+하지만 CNN -> 0.99
+DNN -> 0.97
+정도로 정확도 차이가 있으므로 CNN을 사용하는 것이 좋음
+
+model.add(MaxPool2D(pool_size = 2)) # (2, 2)와 똑같음
+model.add(Dropout(0.25)) # 25%를 잘라버린다(필요없는거..!)
+
+6만 = 7, 3, 5, 6 .... => One-Hot encoding
+7: 0000000100
+3: 0001000000
+5: 0000010000
+6: 0000001000
+
+One-Hot encoding
+https://wikidocs.net/22647
+
+네이버 블로그 gema0000님의 블로그(케라스정보)
+https://blog.naver.com/gema0000
+
+파이썬 3.6.8로 다운해야함
+cuda 10.0
+cudnn 10.0
+tensorflow 1.14.0
+Nvidia G(그래픽) driver
+#엔비디아 사이트 아이디 필요하므로 회원가입필요
+
+google colab(구글 코랩)
+여기서 새 파일 만드는거로 하고 런타임에서 유형변경해서
+GPU로 설정한뒤에 하면 코드당 12시간까지 사용가능
+(CPU 없을때 사용하기 적합하지만 12시간 이상걸리는거는 불가능)
+파일은 구글드라이브 Colab Notebooks에 저장됨
+jupyter notebook형식으로 진행되며 실행시 Shift + Enter
+보통 실행하면 저장되는 형식같지만 혹시모르니 Ctrl+S로 저장
+
